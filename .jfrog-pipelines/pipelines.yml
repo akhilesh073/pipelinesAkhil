@@ -1,9 +1,9 @@
 resources:
-  - name: self_repo1
+  - name: self_repo2
     type: GitRepo
     configuration:
       gitProvider: testInt
-      path: akhilesh073/TestYmlPipeline
+      path: akhilesh073/pipelinesAkhil
       branches:
         include: ^tests$
 
@@ -14,10 +14,10 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: self_repo1
+            - name: self_repo2
         execution:
           onExecute:
-            - pushd "$res_self_repo1_resourcePath/"
+            - pushd "$res_self_repo2_resourcePath/"
             - save_tests saveTests/failing
             - echo "Passed"
             - popd
