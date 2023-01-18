@@ -1,0 +1,23 @@
+resources:
+  - name: self_repo
+    type: GitRepo
+    configuration:
+      gitProvider: testInt
+      path: akhilesh073/TestYmlPipeline
+      branches:
+        include: ^tests$
+
+pipelines:
+  - name: simplePipelines_to_upload_step
+    steps:
+      - name: Normal_Step
+        type: Bash
+        configuration:
+          inputResources:
+            - name: self_repo
+        execution:
+          onExecute:
+            - pushd "$res_self_repo_resourcePath/"
+            - save_tests saveTests/failing
+            - echo "Passed"
+            - popd
