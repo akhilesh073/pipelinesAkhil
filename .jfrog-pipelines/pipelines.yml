@@ -1,5 +1,5 @@
 resources:
-  - name: self_repo
+  - name: self_repo1
     type: GitRepo
     configuration:
       gitProvider: testInt
@@ -14,10 +14,10 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: self_repo
+            - name: self_repo1
         execution:
           onExecute:
-            - pushd "$res_self_repo_resourcePath/"
+            - pushd "$res_self_repo1_resourcePath/"
             - save_tests saveTests/failing
             - echo "Passed"
             - popd
